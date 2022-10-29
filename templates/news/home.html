@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+{% for post in posts %}
+{{ post.title }}
+    {% if post.image %}
+        <img src="{{ post.image.url }}" width="350" alt="">
+    {% endif %}
+{% endfor %}
+    {% for cat in cats %}
+    {{ cat.name }}
+    {% endfor %}
+
+
+{% endblock %}
