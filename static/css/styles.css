@@ -1,0 +1,27 @@
+body{
+    background-color: #fd7e14;
+}
+
+.categories-list{
+    margin-top: 15px;
+}
+
+.news-list{
+    margin-top: 15px
+}
+
+.news-list-footer{
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.news-list-footer-upd{
+    position: absolute;
+    padding-top: 2px;
+    left: 1px;
+}
+
+.news-list-footer-read{
+    position: absolute;
+    right: 1px;
+}
