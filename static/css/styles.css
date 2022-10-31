@@ -1,5 +1,10 @@
 body{
-    background-color: #fd7e14;
+    background-image: url("/static/images/500.webp");
+    background-size:100%;
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    height:100%;
+    width:100%;
 }
 
 .categories-list{
@@ -25,3 +30,47 @@ body{
     position: absolute;
     right: 1px;
 }
+
+.register-form{
+    display: block;
+    position: relative;
+    margin-top: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.register-content{
+    display: block;
+    position: relative;
+    background-color: #fff3cd;
+    padding: 10px 35px 10px 10px;
+}
+
+.errorlist{
+    color: #a52834;
+}
+
+.nav-link{
+    color: #6f42c1;
+}
+
+.log-reg a.nav-link.active:hover{
+    color: #3dd5f3;
+}
+
+.nav-link:hover{
+    color: #fd7e14;
+}
+
+.log-reg .active-user{
+    color: #0d6efd;
+}
+
+.list-group a.active{
+    background-color: #20c997;
+}
+
+.add-news{
+    color: #fefefe;
+}
+

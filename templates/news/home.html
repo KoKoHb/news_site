@@ -12,18 +12,27 @@
                     <div class="list-group">
                         {% get_categories as cats %}
                         {% for cat in cats %}
-                            <a href="{{ cat.get_absolute_url }}" class="list-group-item list-group-item-action">{{ cat.name }}</a>
+                            <a href="{{ cat.get_absolute_url }}"
+                               class="list-group-item list-group-item-action">{{ cat.name }}</a>
                         {% endfor %}
                     </div>
                 </div>
             </div>
             <div class="col-md-8" style="min-width: 375px">
+                {% if messages %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
                 {% for post in posts %}
                     <div class="container">
                         <div class="card news-list">
                             <div class="row g-0">
                                 <div class="card-header">
-                                            <strong>{{ post.title }}</strong>
+                                    <strong>{{ post.title }}</strong>
                                 </div>
                                 <div class="col-md-3">
                                     {% if post.image %}
@@ -45,7 +54,8 @@
                                                 href="{% url 'news_by_category' post.category_id %}">{{ post.category }}</a>
                                         </div>
                                         <div class="news-list-footer-read">
-                                            <a href="{% url 'news_detail' post.id %}" class="btn btn-sm btn-primary">Читать статью</a>
+                                            <a href="{{ post.get_absolute_url }}" class="btn btn-sm btn-primary">Читать
+                                                статью</a>
                                         </div>
                                     </div>
                                 </div>

@@ -9,7 +9,7 @@ class Post(models.Model):
     created_at = models.DateTimeField("Время создания", auto_now_add=True)
     updated_at = models.DateTimeField("Последнее обновление", auto_now=True)
     is_published = models.BooleanField("Опубликовано?", default=False)
-    image = models.ImageField("Картинка к посту", upload_to='posts/%Y/%m/%d/', blank=True, null=True)
+    image = models.ImageField("Картинка к новости", upload_to='posts/%Y/%m/%d/', blank=True, null=True)
     author = models.ForeignKey(User, verbose_name="Автор", on_delete=models.CASCADE)
     category = models.ForeignKey("Category", verbose_name="Категория", on_delete=models.CASCADE)
 
@@ -17,7 +17,7 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("post_detail", kwargs={"pk": self.pk})
+        return reverse("news_detail", kwargs={"pk": self.pk})
 
     class Meta:
         verbose_name = "Пост"

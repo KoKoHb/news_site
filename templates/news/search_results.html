@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load news_tags %}
+{% block title %}
+    Результаты поиска
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row g-0">
+            <div class="col-md-3 categories-list">
+                <div class="container">
+                    <div class="list-group">
+                        {% get_categories as cats %}
+                        {% for cat in cats %}
+                            <a href="{{ cat.get_absolute_url }}" class="list-group-item list-group-item-action">{{ cat.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8" style="min-width: 375px">
+                {% for post in object_list %}
+                    <div class="container">
+                        <div class="card news-list">
+                            <div class="row g-0">
+                                <div class="card-header">
+                                            <strong>{{ post.title }}</strong>
+                                </div>
+                                <div class="col-md-3">
+                                    {% if post.image %}
+                                        <img src="{{ post.image.url }}" class="img-fluid rounded-start" alt="...">
+                                    {% else %}
+                                        <img src="..." class="img-fluid rounded-start" alt="...">
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="card-body">
+                                        <p class="card-text">{{ post.article|truncatewords:50 }}</p>
+                                        <p class="text-muted">{{ post.author }}</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="news-list-footer">
+                                        <div class="news-list-footer-upd">
+                                            <small class="text-muted">{{ post.updated_at }}</small> | <a
+                                                href="{% url 'news_by_category' post.category_id %}">{{ post.category }}</a>
+                                        </div>
+                                        <div class="news-list-footer-read">
+                                            <a href="{% url 'news_detail' post.id %}" class="btn btn-sm btn-primary">Читать статью</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

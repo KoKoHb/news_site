@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load news_tags %}
 {% block title %}
-    Главная страница
+    Новости
 {% endblock %}
 
 {% block content %}
@@ -48,10 +48,10 @@
 
                                         <div class="news-list-footer-upd">
                                             <small class="text-muted">{{ post.updated_at }}</small> | <a
-                                                href="#">{{ post.category }}</a>
+                                                href="{% url 'news_by_category' post.category_id %}">{{ post.category }}</a>
                                         </div>
                                         <div class="news-list-footer-read">
-                                            <a href="#" class="btn btn-sm btn-primary">Читать статью</a>
+                                            <a href="{{ post.get_absolute_url }}" class="btn btn-sm btn-primary">Читать статью</a>
                                         </div>
                                     </div>
                                 </div>

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+Регистрация нового пользователя
+{% endblock %}
+{% block content %}
+    <div class="col-md-8 register-form">
+        <div class="card register-content">
+            <div class="row g-0">
+                <form action="{% url 'register' %}" method="post" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="register-content">
+                        {{ form.as_p }}
+                    </div>
+                    <div class="btn-to-post-detail">
+                        <button class="btn btn-primary" type="submit">Отправить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
