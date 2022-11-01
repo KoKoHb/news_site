@@ -1,5 +1,5 @@
 body{
-    background-image: url("/static/images/500.webp");
+    background-image: url("/static/images/b1.gif");
     background-size:100%;
     background-repeat: repeat-y;
     background-attachment: fixed;
@@ -67,10 +67,16 @@ body{
 }
 
 .list-group a.active{
-    background-color: #20c997;
+    background-color: #25cff2;
+    border: aquamarine;
 }
 
 .add-news{
-    color: #fefefe;
+    color: #000000;
+}
+
+.news-pagination{
+    justify-content: center;
+    margin-top: 15px;
 }
 

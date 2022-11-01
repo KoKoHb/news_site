@@ -11,6 +11,7 @@ from .models import Post, Category
 class HomePageListView(ListView):
     template_name = 'news/home.html'
     context_object_name = 'posts'
+    paginate_by = 4
 
     def get_queryset(self):
         return Post.objects.filter(is_published=True).select_related('category', 'author')
@@ -19,6 +20,7 @@ class HomePageListView(ListView):
 class NewsByCategoryListView(ListView):
     template_name = 'news/news_by_category.html'
     context_object_name = 'posts'
+    paginate_by = 4
 
     def get_queryset(self):
         return Post.objects.filter(category_id=self.kwargs['category_id'], is_published=True).select_related('category', 'author')
@@ -74,8 +76,9 @@ def logout_user(request):
 
 
 class Search(ListView):
-    model = Post
     template_name = "news/search_results.html"
+    context_object_name = "posts"
+    paginate_by = 4
 
     def get_queryset(self):
         query = self.request.GET.get("search_string")

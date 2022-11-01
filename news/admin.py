@@ -4,6 +4,9 @@ from django.utils.safestring import mark_safe
 from .models import Post, Category
 
 
+admin.site.site_header = "Новостной сайт"
+
+
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ("id", "title", "category", "author", "updated_at", "get_image", "is_published")
@@ -12,6 +15,8 @@ class PostAdmin(admin.ModelAdmin):
     exclude = ("author",)
     readonly_fields = ("get_image",)
     search_fields = ("title", "article")
+    list_filter = ("is_published", "author")
+    list_per_page = 5
 
     def get_image(self, obj):
         if obj.image:

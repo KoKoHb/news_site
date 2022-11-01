@@ -13,21 +13,24 @@
                         {% get_categories as cats %}
                         {% for cat in cats %}
                             {% if request.path == cat.get_absolute_url %}
-                                <a href="{{ cat.get_absolute_url }}" class="list-group-item list-group-item-action active" aria-current="true">{{ cat.name }}</a>
+                                <a href="{{ cat.get_absolute_url }}"
+                                   class="list-group-item list-group-item-action active"
+                                   aria-current="true">{{ cat.name }}</a>
                             {% else %}
-                                <a href="{{ cat.get_absolute_url }}" class="list-group-item list-group-item-action">{{ cat.name }}</a>
+                                <a href="{{ cat.get_absolute_url }}"
+                                   class="list-group-item list-group-item-action">{{ cat.name }}</a>
                             {% endif %}
                         {% endfor %}
                     </div>
                 </div>
             </div>
-            <div class="col-md-8" style="min-width: 375px">
+            <div class="col-md-8">
                 {% for post in posts %}
                     <div class="container">
                         <div class="card news-list">
                             <div class="row g-0">
                                 <div class="card-header">
-                                            <strong>{{ post.title }}</strong>
+                                    <strong>{{ post.title }}</strong>
                                 </div>
                                 <div class="col-md-3">
                                     {% if post.image %}
@@ -51,7 +54,8 @@
                                                 href="{% url 'news_by_category' post.category_id %}">{{ post.category }}</a>
                                         </div>
                                         <div class="news-list-footer-read">
-                                            <a href="{{ post.get_absolute_url }}" class="btn btn-sm btn-primary">Читать статью</a>
+                                            <a href="{{ post.get_absolute_url }}" class="btn btn-sm btn-primary">Читать
+                                                статью</a>
                                         </div>
                                     </div>
                                 </div>
@@ -59,6 +63,40 @@
                         </div>
                     </div>
                 {% endfor %}
+                <div class="col-md-12">
+                    <nav aria-label="...">
+                        <ul class="pagination news-pagination">
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <span class="page-link">Previous</span>
+                                </li>
+                            {% endif %}
+                            {% for page in paginator.page_range %}
+                                {% if page_obj.number == page %}
+                                    <li class="page-item active" aria-current="page">
+                                        <span class="page-link">{{ page }}</span>
+                                    </li>
+                                {% elif page >= page_obj.number|add:-2 and page <= page_obj.number|add:2 %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <span class="page-link disabled">Next</span>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
